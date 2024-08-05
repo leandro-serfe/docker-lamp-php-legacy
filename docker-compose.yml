@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: server_php
+    env_file: .env
+    links:
+       - db
+    ports:
+      - 8000:80
+    volumes:
+      - ./server:/var/www/html
+      - ./logs:/var/log/apache2/
+
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    env_file: .env
+    volumes:
+      - "./.data/db2:/var/lib/mysql"
+      - "./db/:/tmp/mysql-dumps"
+#      - "./.data/my.cnf:/etc/my.cnf"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    env_file: .env
+    links:
+       - db
+    ports:
+      - 8080:80
