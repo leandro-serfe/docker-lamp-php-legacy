@@ -97,4 +97,4 @@ If you have any suggestions or want to contribute to the project, please open an
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [Apache License 2.0](LICENSE).
